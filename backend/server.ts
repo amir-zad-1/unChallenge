@@ -3,7 +3,7 @@ import log4js = require("log4js");
 
 import appManager = require("./src/AppManager");
 import config from "./src/config";
-import {connect as connectToDb} from "./src/database/DbConnection";
+import {connect as connectToDb} from "./src/database/dbConnection";
 
 const app = appManager.createApp();
 
