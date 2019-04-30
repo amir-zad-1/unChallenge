@@ -29,7 +29,10 @@ export default class PlayerUtil {
         }
     }
 
-    public static toHttp(player: IPlayer) {
+    public static toHttp(player: IPlayer | null) {
+        if (!player) {
+            return {};
+        }
         return {
             email: player.email,
             id: player.id,
