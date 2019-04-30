@@ -9,7 +9,9 @@ class GameSessionRouter {
     }
 
     public getRouter(): Router {
-        this.router.get("/", GameSessionController.getHandler);
+        this.router.get("/:id/feedbacks", GameSessionController.feedbackGetHandler);
+        this.router.post("/:id/feedbacks", GameSessionController.feedbackPostHandler);
+        this.router.get("/:id?/", GameSessionController.getHandler);
         return this.router;
     }
 }

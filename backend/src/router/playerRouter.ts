@@ -1,0 +1,17 @@
+import {Router} from "express";
+import PlayerController from "../controller/playerController";
+
+class PlayerRouter {
+    private readonly router: Router;
+
+    constructor() {
+        this.router = Router();
+    }
+
+    public getRouter(): Router {
+        this.router.get("/", PlayerController.getHandler);
+        return this.router;
+    }
+}
+
+export default new PlayerRouter();
