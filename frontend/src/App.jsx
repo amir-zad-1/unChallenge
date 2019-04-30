@@ -3,18 +3,18 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Menu from './components/Menu';
 import Header from './components/Header';
-import Users from './components/Users';
+import Players from './components/Players';
 
-import UserService from './services/UserService';
+import BackendService from './services/BackendService';
 
 class App extends Component {
 
   state = {
-    users: []
+    players: []
   };
 
   componentDidMount() {
-    UserService.get().then(users => { this.setState({users}) })
+    BackendService.getPlayers().then(players => { this.setState({players}) })
   }
 
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
           <Container>
             <Header/>
             <Menu/>
-            <Users users={this.state.users} />
+            <Players players={this.state.players} />
           </Container>
         </React.Fragment>
       </Router>

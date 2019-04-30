@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default class Users extends Component {
+export default class Players extends Component {
 
   render() {
     return (
@@ -15,16 +15,14 @@ export default class Users extends Component {
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Desc</th>
               </tr>
               </thead>
               <tbody>
-              {this.props.users.map(user => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.description}</td>
+              {this.props.players.map(player => (
+                <tr key={player.id}>
+                  <td>{player.id}</td>
+                  <td>{player.name}</td>
+                  <td>{player.email}</td>
                 </tr>
               ))}
               </tbody>

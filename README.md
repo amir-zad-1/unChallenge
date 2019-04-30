@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-Unity Challenge
-=======
-=======
->>>>>>> master
-# Unity Challenge 
+### Unity Challenge 
 
 ### Services:
 1. [Backend](./backend)
@@ -27,7 +21,7 @@ Unity Challenge
     
     
 ```
-Visit http://localhost:8081
+Visit http://localhost:3001
 
 **Note:** 'Add user' feature is not implemented in frontend.
 Please send POST request to backend to add a new user.
