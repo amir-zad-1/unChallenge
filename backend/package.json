@@ -10,7 +10,7 @@
     "witest": "./node_modules/mocha/bin/mocha ./dist/test/integration",
     "run": "node dist/server.js",
     "start": "node ./dist/server.js",
-    "utest": " ./node_modules/mocha/bin/mocha ./test/unit"
+    "utest": "./node_modules/mocha/bin/mocha --require ts-node/register \"test/unit/**/*.ts\" "
   },
   "author": "Amir Zad",
   "license": "ISC",
