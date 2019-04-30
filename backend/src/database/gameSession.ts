@@ -3,21 +3,23 @@ import mongoose from "mongoose";
 
 const dt = mongoose.Schema.Types;
 
-export interface IReview extends mongoose.Document {
+export interface IFeedback extends mongoose.Document {
     created: Date;
     message: string;
     rate: number;
     player_id: string;
 }
 
-export interface IGame extends mongoose.Document {
+export interface IGameSession extends mongoose.Document {
     created: Date;
     name: string;
     players_id: string[];
-    reviews: IReview[];
+    reviews: IFeedback[];
+    totalReviews: number;
+    totalRate: number;
 }
 
-export const reviewSchema = new mongoose.Schema({
+export const feedbackSchema = new mongoose.Schema({
     created: {
         default: moment.now(),
         type: dt.Date,
@@ -27,7 +29,7 @@ export const reviewSchema = new mongoose.Schema({
     rate: {type: dt.Number, default: 0},
 });
 
-export const gameSchema = new mongoose.Schema({
+export const gameSessionSchema = new mongoose.Schema({
     created: {
         default: moment.now(),
         type: dt.Date,
@@ -37,11 +39,19 @@ export const gameSchema = new mongoose.Schema({
         default: [],
         type: [dt.ObjectId],
     },
-    reviews: {
+    feedbacks: {
         default: [],
-        type: [reviewSchema],
+        type: [feedbackSchema],
+    },
+    total_rate: {
+        default: 0,
+        type: dt.Number,
+    },
+    total_feedback: {
+        default: 0,
+        type: dt.Number,
     },
 });
 
-const Game = mongoose.model<IGame>("Game", gameSchema);
-export default Game;
+const GameSession = mongoose.model<IGameSession>("GameSession", gameSessionSchema);
+export default GameSession;

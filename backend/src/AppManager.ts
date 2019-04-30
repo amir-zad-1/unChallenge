@@ -3,6 +3,7 @@ import {Application, Request, Response, NextFunction} from "express";
 import express = require("express");
 import Log4js from "log4js";
 
+import GameSessionRouter from "./router/gameSessionRouter";
 import RootRouter from "./router/rootRouter";
 
 const logger = Log4js.getLogger(module.filename);
@@ -38,6 +39,7 @@ class AppManager {
 
     private setRoutes(): void {
         this.app.use("/", RootRouter.getRouter());
+        this.app.use("/games", GameSessionRouter.getRouter());
     }
 
     private setDefaultErrorHandler(): void {

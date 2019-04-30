@@ -1,6 +1,6 @@
 export default {
     db: {
-        db: "review",
+        db: "feedback",
         server: "localhost",
     },
     server: {
