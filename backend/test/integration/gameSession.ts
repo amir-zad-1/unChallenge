@@ -94,6 +94,40 @@ describe("/gamesessions", () => {
                 done();
             });
         });
+
+        it("POST returns 400 for feedback with rate greater than 5", (done) => {
+            const feedbackPostData = {
+                message: "MESSAGE",
+                playerId: "111111111111111111111111",
+                rate: 6,
+            };
+            chai.request(API_URL).post(`/${gameSession.id}/feedbacks`).send(feedbackPostData).end((error, response) => {
+                if (error) {
+                    return done(error);
+                }
+                assert.equal(response.status, 400);
+                done();
+            });
+        });
+
+        it("POST returns 409 for existing feedback", (done) => {
+            const feedbackPostData = {
+                message: "MESSAGE",
+                playerId: "111111111111111111111111",
+                rate: 3,
+            };
+            chai.request(API_URL).post(`/${gameSession.id}/feedbacks`)
+                .send(feedbackPostData).end((fError, fResponse) => {
+                if (fError) {
+                    return done(fError);
+                }
+                chai.request(API_URL).post(`/${gameSession.id}/feedbacks`)
+                    .send(feedbackPostData).end((sError, sResponse) => {
+                    assert.equal(sResponse.status, 409);
+                    done();
+                });
+            });
+        });
     });
 
 });

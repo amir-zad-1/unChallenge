@@ -19,6 +19,11 @@ export default class GameSessionService {
                 if (!gameSession) {
                     return reject(new Error("game session not found"));
                 }
+                const previousFeedbacks = gameSession.feedbacks.filter((f) => f.player_id === f.player_id);
+                if (previousFeedbacks.length === 1) {
+                    console.log("tekrariiiiiiiiiiiiii");
+                    return reject(new Error("feedback existed"));
+                }
                 gameSession.feedbacks.push(feedback);
                 gameSession.save().then((saveGameSession) => resolve(saveGameSession));
             }).catch((error) => reject(error));

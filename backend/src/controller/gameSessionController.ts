@@ -57,13 +57,13 @@ class GameSessionController {
     public static feedbackPostHandler(request: Request, response: Response): void {
         const id: string = request.params.id;
         const feedback = gameSessionUtil.getFeedback(request);
-        if (!id && !feedback) {
+        if (!id || !feedback || !gameSessionUtil.isValidFeedback(feedback)) {
             response.status(400).send();
             return;
         }
         gameSessionService.addFeedback(id, feedback)
             .then(() => response.status(201).send())
-            .catch(() => response.status(500).send());
+            .catch(() => response.status(409).send());
 
     }
 }

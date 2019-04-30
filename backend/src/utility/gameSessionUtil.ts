@@ -1,14 +1,24 @@
 import {Request} from "express";
-import GameSession, {IGameSession} from "../database/gameSession";
+import GameSession, {IFeedback, IGameSession} from "../database/gameSession";
 
 const NAME_MIN_LENGTH = 3;
+const NAME_MAX_LENGTH = 10;
+const FEEDBACK_MIN_SCORE = 1;
+const FEEDBACK_MAX_SCORE = 5;
 
 export default class GameSessionUtil {
     public static isValid(gameSession: IGameSession) {
         return gameSession.name &&
-            gameSession.name.length > NAME_MIN_LENGTH &&
+            gameSession.name.length >= NAME_MIN_LENGTH &&
+            gameSession.name.length <= NAME_MAX_LENGTH &&
             gameSession.players_id &&
             Array.isArray(gameSession.players_id);
+    }
+
+    public static isValidFeedback(feedback: IFeedback) {
+        return feedback.rate &&
+            feedback.rate >= FEEDBACK_MIN_SCORE &&
+            feedback.rate <= FEEDBACK_MAX_SCORE;
     }
 
     public static getGameSession(request: Request): IGameSession {
@@ -28,7 +38,7 @@ export default class GameSessionUtil {
         }
     }
 
-    public static getFeedback(request: Request){
+    public static getFeedback(request: Request) {
         let feedback: any = null;
         try {
             if (!request.body.message) {
