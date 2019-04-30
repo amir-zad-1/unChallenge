@@ -4,6 +4,8 @@ Unity Challenge - Backend
 2. [TypeScript](http://www.typescriptlang.org/)
 3. [ExpressJs](https://expressjs.com/)
 4. [Mocha](https://mochajs.org/)
+5. [Mongo](https://www.mongodb.com/)
+6. [Mongoose](https://mongoosejs.com/)
 
 #### Endpoints
      1. /healthcheck
@@ -11,6 +13,7 @@ Unity Challenge - Backend
 
 #### Run 
  Note: Requires node.js and npm to be installed.
+ Note: [Start the database first.](https://github.com/hypBox/unChallenge/tree/master/db)
 
     npm i
     npm run build
@@ -26,3 +29,10 @@ Unity Challenge - Backend
      cd [root directory of repository]
      npm start&
      npm run itest
+##### Unit Tests Result
+ 
+![Test Results](/backend/test/utest.png?raw=true "Unit Test Results")
+
+##### Integration Tests Result
+ 
+![Test Results](/backend/test/itest.png?raw=true "Integration Test Results")
