@@ -28,12 +28,17 @@ export default class GameSessionUtil {
         }
     }
 
-    public static toHttp(gameSession: IGameSession) {
+    public static toHttp(gameSession: IGameSession | null) {
+        if (!gameSession) {
+            return {};
+        }
         return {
+            feedbacks: gameSession.feedbacks,
             id: gameSession.id,
             name: gameSession.name,
-            totalFeedback: gameSession.totalFeedback,
-            totalRate: gameSession.totalRate,
+            players: gameSession.players_id,
+            totalFeedback: gameSession.total_feedback,
+            totalRate: gameSession.total_rate,
         };
     }
 }

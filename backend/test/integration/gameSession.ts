@@ -34,6 +34,7 @@ describe("/gamesessions", () => {
             }
             assert.equal(response.body.name, postData.name);
             assert.exists(response.body.id);
+            assert.equal(response.body.totalFeedback, 0);
             assert.equal(response.status, 201);
             done();
         });
@@ -49,6 +50,19 @@ describe("/gamesessions", () => {
             }
             assert.equal(response.status, 400);
             done();
+        });
+    });
+
+    describe("/gamesessions/:id/feedbacks", () => {
+        it("GET returns 200 and list of game session feedbacks", (done) => {
+            chai.request(API_URL).get("/").end((error, response) => {
+                if (error) {
+                    return done(error);
+                }
+                assert.equal(Array.isArray(response.body), true);
+                assert.equal(response.status, 200);
+                done();
+            });
         });
     });
 

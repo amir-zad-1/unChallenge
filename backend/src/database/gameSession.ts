@@ -15,8 +15,8 @@ export interface IGameSession extends mongoose.Document {
     name: string;
     players_id: string[];
     feedbacks: IFeedback[];
-    totalFeedback: number;
-    totalRate: number;
+    total_feedback: number;
+    total_rate: number;
 }
 
 export const feedbackSchema = new mongoose.Schema({

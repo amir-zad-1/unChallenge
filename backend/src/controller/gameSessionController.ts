@@ -9,6 +9,13 @@ logger.level = "debug";
 
 class GameSessionController {
     public static getHandler(request: Request, response: Response): void {
+        const id: string = request.params.id;
+        if (id) {
+            gameSessionService.getById(id).then((findGameSession) => {
+                response.json(gameSessionUtil.toHttp(findGameSession));
+            });
+            return;
+        }
         gameSessionService.getAll().then((gameSessions) => {
             response.json(gameSessions.map((gameSession) => gameSessionUtil.toHttp(gameSession)));
         }).catch((error) => {
@@ -32,7 +39,13 @@ class GameSessionController {
     }
 
     public static feedbackGetHandler(request: Request, response: Response): void {
-        response.json(["f1", "f2"]);
+        const id: string = request.params.id;
+        if (id) {
+            gameSessionService.getById(id).then((findGameSession) => {
+                response.json(gameSessionUtil.toHttp(findGameSession).feedbacks);
+            });
+            return;
+        }
     }
 
     public static feedbackPostHandler(request: Request, response: Response): void {
