@@ -1,5 +1,6 @@
 // import {Request} from "express";
-// import Player, {IPlayer} from "../database/player";
+
+import {IGameSession} from "../database/gameSession";
 
 export default class GameSessionUtil {
     // public static isValid(player: IPlayer) {
@@ -26,11 +27,12 @@ export default class GameSessionUtil {
     //     }
     // }
     //
-    // public static toHttp(player: IPlayer) {
-    //     return {
-    //         email: player.email,
-    //         id: player.id,
-    //         name: player.name,
-    //     };
-    // }
+    public static toHttp(gameSession: IGameSession) {
+        return {
+            id: gameSession.id,
+            name: gameSession.name,
+            totalFeedback: gameSession.totalFeedback,
+            totalRate: gameSession.totalRate,
+        };
+    }
 }

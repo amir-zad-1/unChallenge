@@ -14,8 +14,8 @@ export interface IGameSession extends mongoose.Document {
     created: Date;
     name: string;
     players_id: string[];
-    reviews: IFeedback[];
-    totalReviews: number;
+    feedbacks: IFeedback[];
+    totalFeedback: number;
     totalRate: number;
 }
 
