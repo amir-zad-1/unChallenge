@@ -9,7 +9,18 @@ Unity Challenge - Backend
 
 #### Endpoints
      1. /healthcheck
-             1.1 [GET] => returns {ok: true} if service is up.
+             1.1 [GET] => returns {ok: true} if service is up
+     2. /players
+             2.1 [GET] => returns all players
+             2.2 [GET]/id? => returns player with the given id
+             2.3 [POST] => adds new player
+     3. /gamesessions
+             3.1 [GET] => returns all game sessions
+             3.2 [GET]/id? => returns game session with the given id
+             3.3 [POST] => adds new game session
+     4. /gamesessions/:id/feedbacks
+             4.1 [GET] => returns all feedbacks for the given game session
+             4.2 [POST] => adds new feedback to the given game session
 
 #### Run 
  Note: Requires node.js and npm to be installed.
@@ -29,10 +40,11 @@ Unity Challenge - Backend
      cd [root directory of repository]
      npm start&
      npm run itest
-##### Unit Tests Result
- 
-![Test Results](/backend/test/utest.png?raw=true "Unit Test Results")
 
 ##### Integration Tests Result
  
 ![Test Results](/backend/test/itest.png?raw=true "Integration Test Results")
+
+##### Unit Tests Result
+ 
+![Test Results](/backend/test/utest.png?raw=true "Unit Test Results")
