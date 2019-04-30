@@ -12,6 +12,9 @@ class GameSessionController {
         const id: string = request.params.id;
         if (id) {
             gameSessionService.getById(id).then((findGameSession) => {
+                if (!findGameSession) {
+                    return response.status(404).send();
+                }
                 response.json(gameSessionUtil.toHttp(findGameSession));
             });
             return;
@@ -42,6 +45,9 @@ class GameSessionController {
         const id: string = request.params.id;
         if (id) {
             gameSessionService.getById(id).then((findGameSession) => {
+                if (!findGameSession) {
+                    return response.status(404);
+                }
                 response.json(gameSessionUtil.toHttp(findGameSession).feedbacks);
             });
             return;
@@ -49,7 +55,16 @@ class GameSessionController {
     }
 
     public static feedbackPostHandler(request: Request, response: Response): void {
-        response.json({post: true});
+        const id: string = request.params.id;
+        const feedback = gameSessionUtil.getFeedback(request);
+        if (!id && !feedback) {
+            response.status(400).send();
+            return;
+        }
+        gameSessionService.addFeedback(id, feedback)
+            .then(() => response.status(201).send())
+            .catch(() => response.status(500).send());
+
     }
 }
 

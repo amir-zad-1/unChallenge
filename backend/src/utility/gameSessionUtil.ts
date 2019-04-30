@@ -28,6 +28,28 @@ export default class GameSessionUtil {
         }
     }
 
+    public static getFeedback(request: Request){
+        let feedback: any = null;
+        try {
+            if (!request.body.message) {
+                throw new Error();
+            }
+            if (!request.body.playerId) {
+                throw new Error();
+            }
+            if (!request.body.rate) {
+                throw new Error();
+            }
+            feedback = {};
+            feedback.message = request.body.message;
+            feedback.player_id = request.body.playerId;
+            feedback.rate = request.body.rate;
+            return feedback;
+        } catch (e) {
+            return feedback;
+        }
+    }
+
     public static toHttp(gameSession: IGameSession | null) {
         if (!gameSession) {
             return {};

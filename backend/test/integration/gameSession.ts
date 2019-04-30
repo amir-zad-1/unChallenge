@@ -27,6 +27,17 @@ describe("/gamesessions", () => {
         });
     });
 
+    it("GET returns 404 for non-existed game session id", (done) => {
+        const notExistedId = "000000000000000000000000";
+        chai.request(API_URL).get(`/${notExistedId}`).end((error, response) => {
+            if (error) {
+                return done(error);
+            }
+            assert.equal(response.status, 404);
+            done();
+        });
+    });
+
     it("POST returns 201 for valid game session data", (done) => {
         postGameSession().then((gameSessionResponse: any) => {
             assert.equal(gameSessionResponse.body.name, gameSessionPostData.name);
@@ -68,12 +79,21 @@ describe("/gamesessions", () => {
                 done();
             });
         });
-        //
-        //     it("POST returns 201 for feedbacks", (done) => {
-        //         assert.equal(Array.isArray(getResponse.body), true);
-        //         assert.equal(getResponse.status, 200);
-        //         done();
-        //     });
+
+        it("POST returns 201 for feedbacks", (done) => {
+            const feedbackPostData = {
+                message: "MESSAGE",
+                playerId: "111111111111111111111111",
+                rate: 3,
+            };
+            chai.request(API_URL).post(`/${gameSession.id}/feedbacks`).send(feedbackPostData).end((error, response) => {
+                if (error) {
+                    return done(error);
+                }
+                assert.equal(response.status, 201);
+                done();
+            });
+        });
     });
 
 });
