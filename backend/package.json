@@ -10,13 +10,14 @@
     "witest": "./node_modules/mocha/bin/mocha ./dist/test/integration",
     "run": "node dist/server.js",
     "start": "node ./dist/server.js",
-    "utest": " ./node_modules/mocha/bin/mocha ./test/unit"
+    "utest": "./node_modules/mocha/bin/mocha --require ts-node/register \"test/unit/**/*.ts\" "
   },
   "author": "Amir Zad",
   "license": "ISC",
   "devDependencies": {
     "@types/bluebird": "^3.5.26",
     "@types/express": "^4.16.1",
+    "@types/mocha": "^5.2.6",
     "@types/mongoose": "^5.3.27",
     "@types/node": "^11.12.1",
     "@types/validator": "^10.11.0",
