@@ -9,7 +9,7 @@ class PlayerRouter {
     }
 
     public getRouter(): Router {
-        this.router.get("/", PlayerController.getHandler);
+        this.router.get("/:id?", PlayerController.getHandler);
         this.router.post("/", PlayerController.postHandler);
         return this.router;
     }
