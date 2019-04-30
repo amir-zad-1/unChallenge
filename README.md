@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 Unity Challenge
 =======
+=======
+>>>>>>> master
 # Unity Challenge 
 
 ### Services:
