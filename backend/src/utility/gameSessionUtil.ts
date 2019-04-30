@@ -1,32 +1,33 @@
-// import {Request} from "express";
+import {Request} from "express";
+import GameSession, {IGameSession} from "../database/gameSession";
 
-import {IGameSession} from "../database/gameSession";
+const NAME_MIN_LENGTH = 3;
 
 export default class GameSessionUtil {
-    // public static isValid(player: IPlayer) {
-    //     return player.name &&
-    //         player.name.length > NAME_MIN_LENGTH &&
-    //         player.email &&
-    //         player.email.length > EMAIL_MIN_LENGTH; // todo: use validator package to validate player
-    // }
+    public static isValid(gameSession: IGameSession) {
+        return gameSession.name &&
+            gameSession.name.length > NAME_MIN_LENGTH &&
+            gameSession.players_id &&
+            Array.isArray(gameSession.players_id);
+    }
 
-    // public static getGame(request: Request): IPlayer {
-    //     const player: IPlayer = new Player();
-    //     try {
-    //         if (!request.body.name) {
-    //             throw new Error();
-    //         }
-    //         if (!request.body.email) {
-    //             throw new Error();
-    //         }
-    //         player.name = request.body.name;
-    //         player.email = request.body.email;
-    //         return player;
-    //     } catch (e) {
-    //         return player;
-    //     }
-    // }
-    //
+    public static getGameSession(request: Request): IGameSession {
+        const gameSession: IGameSession = new GameSession();
+        try {
+            if (!request.body.name) {
+                throw new Error();
+            }
+            if (!request.body.players) {
+                throw new Error();
+            }
+            gameSession.name = request.body.name;
+            gameSession.players_id = request.body.players;
+            return gameSession;
+        } catch (e) {
+            return gameSession;
+        }
+    }
+
     public static toHttp(gameSession: IGameSession) {
         return {
             id: gameSession.id,

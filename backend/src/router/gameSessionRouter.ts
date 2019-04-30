@@ -12,6 +12,7 @@ class GameSessionRouter {
         this.router.get("/:id/feedbacks", GameSessionController.feedbackGetHandler);
         this.router.post("/:id/feedbacks", GameSessionController.feedbackPostHandler);
         this.router.get("/:id?/", GameSessionController.getHandler);
+        this.router.post("/", GameSessionController.postHandler);
         return this.router;
     }
 }
