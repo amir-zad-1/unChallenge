@@ -27,11 +27,11 @@ export default class GameSessionUtil {
             if (!request.body.name) {
                 throw new Error();
             }
-            if (!request.body.sessions) {
+            if (!request.body.players) {
                 throw new Error();
             }
             gameSession.name = request.body.name;
-            gameSession.players_id = request.body.sessions;
+            gameSession.players_id = request.body.players;
             return gameSession;
         } catch (e) {
             return gameSession;
