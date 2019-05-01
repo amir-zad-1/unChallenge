@@ -18,8 +18,11 @@
     npm i
     npm run build
     npm start&
+    npm run itest #to add some dummy data
     
-    
+    cd ../frontend
+    npm i
+    npm start
 ```
 Visit http://localhost:3001
 

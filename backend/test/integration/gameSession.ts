@@ -9,10 +9,6 @@ import config from "../../src/config";
 const assert = chai.assert;
 
 const API_URL = `http://localhost:${config.server.port}/gamesessions`;
-const gameSessionPostData = {
-    name: "NAME",
-    players: ["000000000000000000000000", "111111111111111111111111"],
-};
 
 describe("/gamesessions", () => {
 
@@ -39,13 +35,17 @@ describe("/gamesessions", () => {
     });
 
     it("POST returns 201 for valid game session data", (done) => {
-        postGameSession().then((gameSessionResponse: any) => {
+        const gameSessionPostData = {
+            name: "NAME",
+            players: ["000000000000000000000001", "111111111111111111111110"],
+        };
+        postGameSession(gameSessionPostData).then((gameSessionResponse: any) => {
             assert.equal(gameSessionResponse.body.name, gameSessionPostData.name);
             assert.exists(gameSessionResponse.body.id);
             assert.equal(gameSessionResponse.body.totalFeedback, 0);
             assert.equal(gameSessionResponse.status, 201);
             done();
-        }).catch((error) => done(error));
+        }).catch((error: Error) => done(error));
     });
 
     it("POST returns 400 for invalid game session data", (done) => {
@@ -63,8 +63,12 @@ describe("/gamesessions", () => {
 
     describe("/:id/feedbacks", () => {
         let gameSession: any;
+        const gameSessionPostData = {
+            name: "NAME",
+            players: ["000000000000000000000001", "111111111111111111111110"],
+        };
         before((done) => {
-            postGameSession().then((gameSessionResponse: any) => {
+            postGameSession(gameSessionPostData).then((gameSessionResponse: any) => {
                 gameSession = gameSessionResponse.body;
                 done();
             });
@@ -98,7 +102,7 @@ describe("/gamesessions", () => {
         it("POST returns 400 for feedback with rate greater than 5", (done) => {
             const feedbackPostData = {
                 message: "MESSAGE",
-                playerId: "111111111111111111111111",
+                playerId: "111111111111111111111119",
                 rate: 6,
             };
             chai.request(API_URL).post(`/${gameSession.id}/feedbacks`).send(feedbackPostData).end((error, response) => {
@@ -113,7 +117,7 @@ describe("/gamesessions", () => {
         it("POST returns 409 for existing feedback", (done) => {
             const feedbackPostData = {
                 message: "MESSAGE",
-                playerId: "111111111111111111111111",
+                playerId: "111111111111111111111118",
                 rate: 3,
             };
             chai.request(API_URL).post(`/${gameSession.id}/feedbacks`)
@@ -132,9 +136,9 @@ describe("/gamesessions", () => {
 
 });
 
-const postGameSession = () => {
+const postGameSession = (postData: any) => {
     return new Promise((resolve, reject) => {
-        chai.request(API_URL).post("/").send(gameSessionPostData).end((postError, postResponse) => {
+        chai.request(API_URL).post("/").send(postData).end((postError, postResponse) => {
             if (postError) {
                 return reject(postError);
             }
