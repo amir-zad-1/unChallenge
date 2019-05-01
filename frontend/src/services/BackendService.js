@@ -16,7 +16,16 @@ const getGameSessions = () => {
     });
 };
 
+const getGameSessionFeedbacks = (gameSessionId) => {
+    return new Promise(resolve => {
+        axios.get(`gamesessions/${gameSessionId}/feedbacks`).then(getResponse => {
+            resolve(getResponse.data);
+        });
+    });
+};
+
 export default {
     getGameSessions,
     getPlayers,
+    getGameSessionFeedbacks
 }
