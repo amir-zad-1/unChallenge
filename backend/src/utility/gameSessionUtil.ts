@@ -27,11 +27,11 @@ export default class GameSessionUtil {
             if (!request.body.name) {
                 throw new Error();
             }
-            if (!request.body.players) {
+            if (!request.body.sessions) {
                 throw new Error();
             }
             gameSession.name = request.body.name;
-            gameSession.players_id = request.body.players;
+            gameSession.players_id = request.body.sessions;
             return gameSession;
         } catch (e) {
             return gameSession;
@@ -68,7 +68,7 @@ export default class GameSessionUtil {
             feedbacks: gameSession.feedbacks,
             id: gameSession.id,
             name: gameSession.name,
-            players: gameSession.players_id,
+            sessions: gameSession.players_id,
             totalFeedback: gameSession.total_feedback,
             totalRate: gameSession.total_rate,
         };

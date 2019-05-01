@@ -1,4 +1,4 @@
-# Unity Challenge 
+### Unity Challenge 
 
 ### Services:
 1. [Backend](./backend)
@@ -21,7 +21,7 @@
     
     
 ```
-Visit http://localhost:3000
+Visit http://localhost:3001
 
 **Note:** 'Add user' feature is not implemented in frontend.
 Please send POST request to backend to add a new user.
@@ -32,4 +32,8 @@ Please send POST request to backend to add a new user.
 3. Use Cypress to automate Frontend testing.
 4. Improve test coverage.
 
-![Frontend](/img/front.png?raw=true "Frontend")
+![Frontend](/img/front3.png?raw=true "Frontend")
+
+![Frontend](/img/front2.png?raw=true "Frontend")
+
+![Frontend](/img/front1.png?raw=true "Frontend")
