@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,13 +17,17 @@ export default class Menu extends Component {
     return (
       <Row>
         <Col style={this.menuStyle} className="p-2">
-          <Button size="sm" alt="Users" className="mr-2">
-            <FontAwesomeIcon icon={faUsers} />
-          </Button>
+          <Link to="/">
+            <Button size="sm" alt="Users" className="mr-2">
+              <FontAwesomeIcon icon={faUsers} />
+            </Button>
+          </Link>
+          <Link to="/sessions">
+            <Button size="sm" alt="Games">
+              <FontAwesomeIcon icon={faGamepad} />
+            </Button>
+          </Link>
 
-          <Button size="sm" alt="Games">
-            <FontAwesomeIcon icon={faGamepad} />
-          </Button>
         </Col>
       </Row>
     )

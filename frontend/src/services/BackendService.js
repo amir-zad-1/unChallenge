@@ -8,6 +8,15 @@ const getPlayers = () => {
     });
 };
 
+const getGameSessions = () => {
+    return new Promise(resolve => {
+        axios.get(`gamesessions`).then(getResponse => {
+            resolve(getResponse.data);
+        });
+    });
+};
+
 export default {
+    getGameSessions,
     getPlayers,
 }

@@ -3,14 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import BackendService from "../services/BackendService";
 
-export default class Players extends Component {
+export default class GameSessions extends Component {
   state = {
-    players: []
+    sessions: []
   };
 
   componentDidMount() {
-    BackendService.getPlayers().then(players => {
-      this.setState({players})
+    BackendService.getGameSessions().then(gameSessions => {
+      this.setState({sessions: gameSessions})
     })
   }
 
@@ -24,15 +24,15 @@ export default class Players extends Component {
               <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Feedbacks</th>
               </tr>
               </thead>
               <tbody>
-              {this.state.players.map(player => (
-                <tr key={player.id}>
-                  <td>{player.id}</td>
-                  <td>{player.name}</td>
-                  <td>{player.email}</td>
+              {this.state.sessions.map(session => (
+                <tr key={session.id}>
+                  <td>{session.id}</td>
+                  <td>{session.name}</td>
+                  <td>{session.name}</td>
                 </tr>
               ))}
               </tbody>
